@@ -1,0 +1,1454 @@
+{
+  "author": "",
+  "category": "General",
+  "extensionNamespace": "",
+  "fullName": "3DPhysics",
+  "helpPath": "",
+  "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLWN1YmUtb3V0bGluZSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik0yMSwxNi41QzIxLDE2Ljg4IDIwLjc5LDE3LjIxIDIwLjQ3LDE3LjM4TDEyLjU3LDIxLjgyQzEyLjQxLDIxLjk0IDEyLjIxLDIyIDEyLDIyQzExLjc5LDIyIDExLjU5LDIxLjk0IDExLjQzLDIxLjgyTDMuNTMsMTcuMzhDMy4yMSwxNy4yMSAzLDE2Ljg4IDMsMTYuNVY3LjVDMyw3LjEyIDMuMjEsNi43OSAzLjUzLDYuNjJMMTEuNDMsMi4xOEMxMS41OSwyLjA2IDExLjc5LDIgMTIsMkMxMi4yMSwyIDEyLjQxLDIuMDYgMTIuNTcsMi4xOEwyMC40Nyw2LjYyQzIwLjc5LDYuNzkgMjEsNy4xMiAyMSw3LjVWMTYuNU0xMiw0LjE1TDYuMDQsNy41TDEyLDEwLjg1TDE3Ljk2LDcuNUwxMiw0LjE1TTUsMTUuOTFMMTEsMTkuMjlWMTIuNThMNSw5LjIxVjE1LjkxTTE5LDE1LjkxVjkuMjFMMTMsMTIuNThWMTkuMjlMMTksMTUuOTFaIiAvPjwvc3ZnPg==",
+  "name": "GDevelop3DPhysics",
+  "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/03b8aa49d9587791b0972fd7eedd0b7c6b1aa87b9594c4c94aaf1fa1de3a3462_cube-outline.svg",
+  "shortDescription": "Adds 3D physics such as \n * 3D collision blocking\n * 3D jumping/falling\n * And more to come.",
+  "version": "0.0.2",
+  "description": [
+    "Adds 3D physics such as ",
+    " * 3D collision blocking",
+    " * 3D jumping/falling",
+    " * And more to come.",
+    " * And expressions to return values"
+  ],
+  "tags": [
+    "3D",
+    "physics"
+  ],
+  "authorIds": [
+    "R0mqNVbHq2d3TkT1tpC30KDawxB3"
+  ],
+  "dependencies": [],
+  "eventsFunctions": [
+    {
+      "description": "Detects if the preferred object is in the 3d box.",
+      "fullName": "3D Collision",
+      "functionType": "Condition",
+      "group": "3DBoxes",
+      "name": "CollisionDetecton",
+      "sentence": "_PARAM1_ is in 3D collision with _PARAM2_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 255,
+            "r": 111,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "BoxCollisionEnable"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Scene3D::Base3DBehavior::Z"
+              },
+              "parameters": [
+                "Object",
+                "Object3D",
+                "<",
+                "Object2.Z()+Object2.Object3D::Depth()+1"
+              ]
+            },
+            {
+              "type": {
+                "value": "Scene3D::Base3DBehavior::Z"
+              },
+              "parameters": [
+                "Object2",
+                "Object3D",
+                "<",
+                "Object.Z()+Object.Object3D::Depth()"
+              ]
+            },
+            {
+              "type": {
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Object2",
+                "Object",
+                "",
+                "",
+                "yes"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Object",
+          "name": "Object",
+          "supplementaryInformation": "Scene3D::Cube3DObject",
+          "type": "objectList"
+        },
+        {
+          "description": "Object2",
+          "name": "Object2",
+          "supplementaryInformation": "Scene3D::Cube3DObject",
+          "type": "objectList"
+        }
+      ],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": [
+    {
+      "description": "Adds 3D Physics",
+      "fullName": "Physics3D",
+      "name": "Physics3D",
+      "objectType": "Scene3D::Cube3DObject",
+      "eventsFunctions": [
+        {
+          "description": "Make the preferred Object to jump in a 3D Envirement.",
+          "fullName": "3D Jump",
+          "functionType": "Action",
+          "group": "Movement/3DPhysics",
+          "name": "Jump_3D",
+          "sentence": "_PARAM0_ Jump with easing _PARAM3_ ",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectVariableTween3"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"3DJump\"",
+                    "JumpProgress",
+                    "Object.Behavior::PropertyJumpHeight()+Object.Object3D::Z()",
+                    "Easing",
+                    "Object.Behavior::PropertyJumpSpeed()",
+                    "no"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Tween",
+              "name": "Tween",
+              "supplementaryInformation": "Tween::TweenBehavior",
+              "type": "behavior"
+            },
+            {
+              "description": "Easing",
+              "name": "Easing",
+              "supplementaryInformation": "[\"linear\",\"easeInQuad\",\"easeOutQuad\",\"easeInOutQuad\",\"easeInCubic\",\"easeOutCubic\",\"easeInOutCubic\",\"easeInQuart\",\"easeOutQuart\",\"easeInOutQuart\",\"easeInQuint\",\"easeOutQuint\",\"easeInOutQuint\",\"easeInSine\",\"easeOutSine\",\"easeInOutSine\",\"easeInExpo\",\"easeOutExpo\",\"easeInOutExpo\",\"easeInCirc\",\"easeOutCirc\",\"easeInOutCirc\",\"easeOutBounce\",\"easeInBack\",\"easeOutBack\",\"easeInOutBack\",\"elastic\",\"swingFromTo\",\"swingFrom\",\"swingTo\",\"bounce\",\"bouncePast\",\"easeFromTo\",\"easeFrom\",\"easeTo\"]",
+              "type": "stringWithSelector"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Check if the preferred Object is Jumping.",
+          "fullName": "Is3DJumping",
+          "functionType": "Condition",
+          "group": "Movement/3DPhysics",
+          "name": "Is3DJumping",
+          "sentence": "Check if _PARAM0_ is 3D Jumping",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior2",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    "True"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Behavior2",
+              "name": "Behavior2",
+              "supplementaryInformation": "Tween::TweenBehavior",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Stop the 3D jumping of the preferred object.",
+          "fullName": "Stop 3D jumping ",
+          "functionType": "Action",
+          "group": "Movement/3DPhysics",
+          "name": "Stop3DJump",
+          "sentence": "Stop _PARAM0_'s jump",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "GDevelop3DPhysics::Physics3D::Is3DJumping"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "Tween",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::StopTween"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"3DJump\"",
+                    ""
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Tween",
+              "name": "Tween",
+              "supplementaryInformation": "Tween::TweenBehavior",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Returns the falling speed of the preferred object.",
+          "fullName": "3DFallSpeed",
+          "functionType": "StringExpression",
+          "group": "Movement/3DPhysics",
+          "name": "JumpHeight",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnString"
+                  },
+                  "parameters": [
+                    "ToString(Object.Behavior::PropertyJumpHeight())"
+                  ]
+                }
+              ]
+            }
+          ],
+          "expressionType": {
+            "type": "string"
+          },
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Returns the falling speed of the preferred object.",
+          "fullName": "3DFallSpeed",
+          "functionType": "StringExpression",
+          "group": "Movement/3DPhysics",
+          "name": "JumpSpeed",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnString"
+                  },
+                  "parameters": [
+                    "ToString(Object.Behavior::PropertyJumpSpeed())"
+                  ]
+                }
+              ]
+            }
+          ],
+          "expressionType": {
+            "type": "string"
+          },
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Make the preferred Object fall in a 3D Envirement.",
+          "fullName": "3D Fall",
+          "functionType": "Action",
+          "group": "Movement/3DPhysics",
+          "name": "Fall_3D",
+          "sentence": "Make _PARAM0_ 3D 3D fall with _PARAM2_ as an obstacle",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "-",
+                    "Object.Behavior::PropertyFallingSpeed()"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "-",
+                    "Object.Variable(FallingSpeed3D)"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "Object2",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Or"
+                      },
+                      "parameters": [],
+                      "subInstructions": [
+                        {
+                          "type": {
+                            "value": "GDevelop3DPhysics::Physics3D::Block3DTopEntryCondition"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "Tween",
+                            "Object2",
+                            ""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "GDevelop3DPhysics::Physics3D::Is3DJumping"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "Tween",
+                            ""
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Object",
+                        "FallingSpeed3D",
+                        "=",
+                        "Object.Behavior::PropertyFallingSpeed()"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectVariableTween3"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"fallingSpeedDefine\"",
+                    "FallingSpeed3D",
+                    "Object.Behavior::PropertyFallingSpeedAcceleration()",
+                    "\"linear\"",
+                    "1",
+                    ""
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Obstacle Object",
+              "name": "Object2",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Returns the falling speed of the preferred object.",
+          "fullName": "3DFallSpeed",
+          "functionType": "StringExpression",
+          "group": "Movement/3DPhysics",
+          "name": "FallSpeed",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnString"
+                  },
+                  "parameters": [
+                    "ToString(Object.Behavior::PropertyFallingSpeed())"
+                  ]
+                }
+              ]
+            }
+          ],
+          "expressionType": {
+            "type": "string"
+          },
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "doStepPreEvents",
+          "sentence": "",
+          "events": [
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object."
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior2",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "IsJumping3D",
+                    "True"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior2",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": []
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "JumpProgress3D",
+                    "=",
+                    "Object.Tween::Value(\"3DJump\")"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Variable(JumpProgress3D)"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object.Variable(GetJumpHeight)"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "IsJumping3D",
+                    "True"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": []
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "SceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "IsJumping3D",
+                    "True"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::AddLayoutValueTween"
+                  },
+                  "parameters": [
+                    "",
+                    "\"3DJump\"",
+                    "1+Object.Object3D::Z()",
+                    "Object.Behavior::PropertyJumpHeight()+Object.Object3D::Z()",
+                    "\"easeInQuad\"",
+                    "Object.Behavior::PropertyJumpSpeed()",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Tween::Value(\"3DJump\")"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior2",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectValueTween"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior2",
+                    "\"3DJump\"",
+                    "1+Object.Object3D::Z()",
+                    "Object.Behavior::PropertyJumpHeight()+Object.Object3D::Z()",
+                    "Easing",
+                    "Object.Behavior::PropertyJumpSpeed()",
+                    "yes",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Object",
+                    "JumpProgress",
+                    "=",
+                    "Object.Object3D::Z()"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object.Variable(JumpProgress)"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "Tween::IsPlaying"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"3DJump\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Object",
+                    "JumpProgress",
+                    "=",
+                    "Object.Object3D::Z()"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": []
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Separate Objects in a 2D Envirement.",
+          "fullName": "Separate Objects 2D",
+          "functionType": "Action",
+          "group": "3DBoxes",
+          "name": "Block2DEntry",
+          "sentence": "2D Separate _PARAM0_ from _PARAM2_ ",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "<",
+                    "Object2.Z()+Object2.Object3D::Depth()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object2",
+                    "Object3D",
+                    "<",
+                    "Object.Z()+Object.Object3D::Depth()"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SeparateFromObjects"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object2",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": []
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Obstacle Object",
+              "name": "Object2",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Separate Objects in a 3D Envirement.",
+          "fullName": "Separate Objects 3D Top",
+          "functionType": "Action",
+          "group": "3DBoxes",
+          "name": "Block3DTopEntry",
+          "sentence": "3D Top Separate _PARAM0_ from _PARAM3_ ",
+          "events": [
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object2",
+                    "",
+                    "",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    ">=",
+                    "Object2.Z()-100"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "<=",
+                    "Object2.Z()+Object2.Object3D::Depth()/2"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "GDevelop3DPhysics::Physics3D::Is3DJumping"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "Tween",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object2.Object3D::Z()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "GDevelop3DPhysics::Physics3D::Stop3DJump"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "Tween",
+                    ""
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": []
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": []
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object2",
+                    "",
+                    "",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    ">=",
+                    "Object2.Z()+Object2.Object3D::Depth()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "<=",
+                    "Object2.Z()+Object2.Object3D::Depth()+Object.Behavior::PropertyPickupRangeFromTop()"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object2.Object3D::Z()+Object2.Object3D::Depth()+Object.Behavior::PropertyFallingSpeed()"
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "<=",
+                    "Object2.Z()+Object2.Object3D::Depth()+Object.Behavior::PropertyPickupRangeFromTop()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object2",
+                    "",
+                    "",
+                    "yes"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object2.Object3D::Z()+Object2.Object3D::Depth()+Object.Behavior::PropertyFallingSpeed()+10"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Tween",
+              "name": "Tween",
+              "supplementaryInformation": "Tween::TweenBehavior",
+              "type": "behavior"
+            },
+            {
+              "description": "Obstacle Object",
+              "name": "Object2",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Check if a Object is on the top of a Cube.",
+          "fullName": "Is on Cube top",
+          "functionType": "Condition",
+          "group": "3DBoxes",
+          "name": "Block3DTopEntryCondition",
+          "sentence": "_PARAM0_ Is on the top of _PARAM3_",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object2",
+                    "",
+                    "",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    ">=",
+                    "Object2.Z()+Object2.Object3D::Depth()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "<=",
+                    "Object2.Z()+Object2.Object3D::Depth()+Object.Behavior::PropertyPickupRangeFromTop()"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    "True"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Tween",
+              "name": "Tween",
+              "supplementaryInformation": "Tween::TweenBehavior",
+              "type": "behavior"
+            },
+            {
+              "description": "Obstacle Object",
+              "name": "Object2",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Separate Objects in a 3D Envirement.",
+          "fullName": "Separate Objects 3D Bottom",
+          "functionType": "Action",
+          "group": "3DBoxes",
+          "name": "Block3DBottomEntry",
+          "sentence": "3D Bottom Separate _PARAM0_ from _PARAM3_ ",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object2",
+                    "",
+                    "",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    ">=",
+                    "Object2.Z()-Object.Object3D::Depth()-1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::Z"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "<=",
+                    "Object2.Z()+Object2.Object3D::Depth()/2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "GDevelop3DPhysics::Physics3D::Stop3DJump"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "Tween",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene3D::Base3DBehavior::SetZ"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Object3D",
+                    "=",
+                    "Object2.Object3D::Z()-Object.Object3D::Depth()"
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": []
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": []
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "GDevelop3DPhysics::Physics3D",
+              "type": "behavior"
+            },
+            {
+              "description": "Tween",
+              "name": "Tween",
+              "supplementaryInformation": "Tween::TweenBehavior",
+              "type": "behavior"
+            },
+            {
+              "description": "Obstacle Object",
+              "name": "Object2",
+              "supplementaryInformation": "Scene3D::Cube3DObject",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "propertyDescriptors": [
+        {
+          "value": "10",
+          "type": "Number",
+          "unit": "PixelSpeed",
+          "label": "Pickup Range of a obstacle",
+          "description": "Depending on the value it might fall right through the floor,  so its recommened you put it at a good smooth  value it wont. this can be adjusted in events",
+          "group": "3D Separation",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "PickupRangeFromTop"
+        },
+        {
+          "value": "5",
+          "type": "Number",
+          "unit": "PixelSpeed",
+          "label": "The speed of falling",
+          "description": "",
+          "group": "Falling",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "FallingSpeed"
+        },
+        {
+          "value": "10",
+          "type": "Number",
+          "unit": "PixelSpeed",
+          "label": "Acceleration of falling speed",
+          "description": "If it is higher  than falling speed, it will gain speed. if its lower, It will lose speed. As you fall.",
+          "group": "Falling",
+          "extraInformation": [],
+          "hidden": true,
+          "name": "FallingSpeedAcceleration"
+        },
+        {
+          "value": "45",
+          "type": "Number",
+          "unit": "PixelSpeed",
+          "label": "The height of jumping",
+          "description": "",
+          "group": "Jumping",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "JumpHeight"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "unit": "PixelSpeed",
+          "label": "The speed of jumping",
+          "description": "",
+          "group": "Jumping",
+          "extraInformation": [],
+          "hidden": false,
+          "name": "JumpSpeed"
+        },
+        {
+          "value": "",
+          "type": "Behavior",
+          "label": "Tween Behavior",
+          "description": "Some Functions will not work properly without",
+          "group": "Required behaviors",
+          "extraInformation": [
+            "Tween::TweenBehavior"
+          ],
+          "hidden": false,
+          "name": "Tween"
+        }
+      ],
+      "sharedPropertyDescriptors": []
+    }
+  ],
+  "eventsBasedObjects": []
+}
